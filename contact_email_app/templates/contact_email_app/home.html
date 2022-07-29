@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+
+{% block content %}
+
+{{ form.non_field.errors }}
+<div class="container">
+    <h1>Contact</h1>
+
+    <div class="col-md-9">
+        <form action="{% url 'contact_email_app:home' %}" method="post" class="order-form">
+
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+            {% endif %}
+
+            {{ form.name }}<br>
+            {{ form.email }}<br>
+            {{ form.text }}<br>
+            {% csrf_token %}
+            <p><input type="submit" class="btn btn-success" value="Send message"></p>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
