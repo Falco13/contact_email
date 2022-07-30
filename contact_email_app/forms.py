@@ -24,4 +24,8 @@ class ContactForm(forms.ModelForm):
         name = self.cleaned_data['name']
         if re.match(r'\d', name):
             raise ValidationError('The name must not start with a number')
+        if re.search(r'\d', name):
+            raise ValidationError('The name must not have a numbers')
+        if re.search(r'\s', name):
+            raise ValidationError('The name must not have spaces')
         return name
