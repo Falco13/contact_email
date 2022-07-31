@@ -22,10 +22,14 @@ class ContactForm(forms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name']
+        punct = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '[', ']', '/', '?', '+', '-', '^', ',', '.', '<', '>']
+        for i in name:
+            if i in punct:
+                raise ValidationError('Name cannot contains special chars and punctuations.')
         if re.match(r'\d', name):
-            raise ValidationError('The name must not start with a number')
+            raise ValidationError('The name cannot start with a number')
         if re.search(r'\d', name):
-            raise ValidationError('The name must not have a numbers')
+            raise ValidationError('The name cannot contains numbers')
         if re.search(r'\s', name):
-            raise ValidationError('The name must not have spaces')
+            raise ValidationError('The name cannot contains spaces')
         return name
