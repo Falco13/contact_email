@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'contact_email_app.apps.ContactEmailAppConfig'
+    'contact_email_app.apps.ContactEmailAppConfig',
+    'contact_email_api.apps.ContactEmailApiConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
