@@ -12,3 +12,21 @@ services:
     command: >
       sh -c "python manage.py makemigrations && python manage.py migrate 
       && python manage.py runserver 0.0.0.0:8000"
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  worker:
+    container_name: celery-worker
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+      - webapp
+    command: "celery -A contact_email worker -l info"

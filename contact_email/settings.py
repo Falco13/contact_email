@@ -120,8 +120,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LIST_OF_EMAIL_RECIPIENTS = ['-']
-
 DEFAULT_FROM_EMAIL = '-'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
