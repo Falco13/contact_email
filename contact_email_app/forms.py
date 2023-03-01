@@ -18,6 +18,8 @@ class ContactForm(forms.ModelForm):
         text = self.cleaned_data['text']
         if len(text) > 2000:
             raise ValidationError('No more than 2000 characters please')
+        if len(text) < 15:
+            raise ValidationError('Minimum 15 characters')
         return text
 
     def clean_name(self):
