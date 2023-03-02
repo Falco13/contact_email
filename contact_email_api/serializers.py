@@ -1,3 +1,4 @@
+import re
 from django.conf import settings
 from rest_framework import serializers
 from contact_email_app.models import Contact
@@ -25,4 +26,11 @@ class ContactSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('No more than 2000 characters please')
         if len(value) < 15:
             raise serializers.ValidationError('Minimum 15 characters')
+        return value
+
+    def validate_name(self, value):
+        if re.search(r'\d', value):
+            raise serializers.ValidationError('The name cannot contains numbers')
+        if re.search(r'\s', value):
+            raise serializers.ValidationError('The name cannot contains spaces')
         return value
