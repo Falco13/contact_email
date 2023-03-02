@@ -18,4 +18,6 @@ __Used tools:__
 :heavy_check_mark: Django [web framework]    
 :heavy_check_mark: Django [REST framework]    
 :heavy_check_mark: HTML+CSS+Bootstrap    
+:heavy_check_mark: Celery + Redis    
+:heavy_check_mark: Docker + Docker-compose    
 :heavy_check_mark: SQLite database    
