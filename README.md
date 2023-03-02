@@ -1,8 +1,8 @@
 # Small Django app with contact form and email sending
 
 - The contact form consists of - Name, Email and Message text.
-- When you click on the Send button, it saves the message to the database and also sends this message to the email of
-  the site administrator, with Celery tasks.
+- When you click on the Send button, it saves the message to the database and also sends this message to the email (using Celery tasks) of
+  the site administrator.
 
 __Validation fields:__
 
