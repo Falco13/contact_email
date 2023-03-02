@@ -2,7 +2,7 @@
 
 - The contact form consists of - Name, Email and Message text.
 - When you click on the Send button, it saves the message to the database and also sends this message to the email of
-  the site administrator.
+  the site administrator, with Celery tasks.
 
 __Validation fields:__
 
