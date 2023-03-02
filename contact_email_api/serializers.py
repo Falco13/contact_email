@@ -19,3 +19,10 @@ class ContactSerializer(serializers.ModelSerializer):
             fail_silently=False,
         )
         return instance
+
+    def validate_text(self, value):
+        if len(value) > 2000:
+            raise serializers.ValidationError('No more than 2000 characters please')
+        if len(value) < 15:
+            raise serializers.ValidationError('Minimum 15 characters')
+        return value
