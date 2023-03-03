@@ -29,6 +29,11 @@ class ContactSerializer(serializers.ModelSerializer):
         return value
 
     def validate_name(self, value):
+        punct = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '[', ']', '/', '?', '+', '-', '^', ',', '.', '<', '>',
+                 '|', '`', '~', ':', ';', '{', '}', '"', '№']
+        for i in value:
+            if i in punct:
+                raise serializers.ValidationError('Name cannot contains special chars and punctuations.')
         if re.search(r'\d', value):
             raise serializers.ValidationError('The name cannot contains numbers')
         if re.search(r'\s', value):
