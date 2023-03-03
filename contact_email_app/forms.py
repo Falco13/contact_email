@@ -25,7 +25,7 @@ class ContactForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data['name']
         punct = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '[', ']', '/', '?', '+', '-', '^', ',', '.', '<', '>',
-                 '|', '`', '~', ':', ';', '{', '}', '"', '№']
+                 '|', '`', '~', ':', ';', '{', '}', '"', '№', '\'', '\\', '€', '£', '¢', '¥', '§', '°', '_']
         for i in name:
             if i in punct:
                 raise ValidationError('Name cannot contains special chars and punctuations.')
