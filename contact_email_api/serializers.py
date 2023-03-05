@@ -1,5 +1,4 @@
 import re
-from django.conf import settings
 from rest_framework import serializers
 from contact_email_app.models import Contact
 from contact_email_app.tasks import send_email_task
