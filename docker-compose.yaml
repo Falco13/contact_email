@@ -30,3 +30,16 @@ services:
       - redis
       - webapp
     command: "celery -A contact_email worker -l info"
+
+  celery-flower:
+    container_name: celery-flower
+    build: .
+    restart: always
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+      - worker
+    command: "celery -A contact_email flower"
