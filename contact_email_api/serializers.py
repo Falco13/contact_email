@@ -2,7 +2,7 @@ import re
 from django.conf import settings
 from rest_framework import serializers
 from contact_email_app.models import Contact
-from django.core.mail import send_mail
+from contact_email_app.tasks import send_email_task
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -12,13 +12,11 @@ class ContactSerializer(serializers.ModelSerializer):
 
     def create(self, validate_data):
         instance = super(ContactSerializer, self).create(validate_data)
-        send_mail(
-            subject='THEME: Message {} has been created'.format(instance.pk),
-            message='MESSAGE: {}'.format(validate_data),
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.LIST_OF_EMAIL_RECIPIENTS],
-            fail_silently=False,
-        )
+        message = 'NAME: {name} / EMAIL: {email}: '.format(
+            name=validate_data['name'],
+            email=validate_data['email'])
+        message += '\n\n{0}'.format(validate_data['text'])
+        send_email_task.delay(message=message)
         return instance
 
     def validate_text(self, value):
