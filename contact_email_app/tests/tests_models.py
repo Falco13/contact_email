@@ -61,3 +61,15 @@ class TestModelContact(TestCase):
         expected_object_name = f'Name: {contact.name}, Done: {contact.is_done}'
 
         self.assertEqual(str(contact), expected_object_name)
+
+    def test_contact_ordering(self):
+        contact1 = Contact(name='Johnny', email='johnny@test.com', text='Hello world!')
+        contact1.save()
+        contact2 = Contact(name='Billy', email='billy@test.com', text='Hi there!')
+        contact2.save()
+        contact3 = Contact(name='Steve', email='steve@test.com', text='I am Steve O!')
+        contact3.save()
+        contacts = Contact.objects.all()
+        self.assertEqual(contacts[0], contact3)
+        self.assertEqual(contacts[1], contact2)
+        self.assertEqual(contacts[2], contact1)
